@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gacha Craft - 使い方ガイド</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            line-height: 1.8;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(233, 69, 96, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(162, 89, 255, 0.15) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            background: linear-gradient(90deg, #e94560, #a259ff, #e94560);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #aaa;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .badge-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge-forge { background: #2d4a7a; color: #7eb8ff; }
+        .badge-version { background: #3a2d5c; color: #c4a0ff; }
+        .badge-multi { background: #2d5c3a; color: #a0ffc4; }
+
+        /* Main content */
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        /* Section */
+        section {
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-left: 16px;
+            border-left: 4px solid #e94560;
+        }
+
+        /* Steps */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .step {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #e94560, #a259ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .step-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+
+        .step-content p {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        .step-content code {
+            background: #0f3460;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #7eb8ff;
+        }
+
+        /* Rarity table */
+        .rarity-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .rarity-card {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-left: 4px solid;
+        }
+
+        .rarity-card.n { border-color: #888; }
+        .rarity-card.r { border-color: #5b9bd5; }
+        .rarity-card.sr { border-color: #ffc107; }
+        .rarity-card.ssr { border-color: #d063ff; }
+
+        .rarity-label {
+            font-size: 1.3rem;
+            font-weight: 800;
+            width: 50px;
+            text-align: center;
+        }
+
+        .rarity-card.n .rarity-label { color: #888; }
+        .rarity-card.r .rarity-label { color: #5b9bd5; }
+        .rarity-card.sr .rarity-label { color: #ffc107; }
+        .rarity-card.ssr .rarity-label { color: #d063ff; }
+
+        .rarity-info {
+            flex: 1;
+        }
+
+        .rarity-info .rate {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        .rarity-info .items {
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        .rarity-info .effect {
+            font-size: 0.85rem;
+            color: #aaa;
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        /* Download button */
+        .download-section {
+            text-align: center;
+            padding: 40px 20px;
+            background: #16213e;
+            border-radius: 16px;
+        }
+
+        .download-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .download-section p {
+            color: #aaa;
+            margin-bottom: 24px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #e94560, #a259ff);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(233, 69, 96, 0.4);
+        }
+
+        .download-note {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        /* Multi section */
+        .note-box {
+            background: #1c2e4a;
+            border: 1px solid #2d4a7a;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-top: 16px;
+        }
+
+        .note-box h4 {
+            color: #7eb8ff;
+            margin-bottom: 8px;
+        }
+
+        .note-box p {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 32px 20px;
+            color: #555;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .step { flex-direction: column; gap: 12px; }
+            .rarity-card { flex-direction: column; align-items: flex-start; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <div class="hero-content">
+        <h1>Gacha Craft</h1>
+        <p>作業台でクラフトすると結果がランダムに！ソシャゲ風レアリティ演出付きMod</p>
+        <div class="badge-row">
+            <span class="badge badge-forge">Forge 1.20.1</span>
+            <span class="badge badge-version">v1.0.0</span>
+            <span class="badge badge-multi">マルチプレイ対応</span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- How it works -->
+    <section>
+        <h2 class="section-title">どんなMod？</h2>
+        <div class="step">
+            <div class="step-content">
+                <p>作業台でアイテムをクラフトすると、本来のアイテムの代わりに<strong>ランダムなアイテム</strong>が出てくるようになります。排出されるアイテムにはソシャゲ風の<strong>レアリティ（N / R / SR / SSR）</strong>があり、レアリティに応じた演出が画面に表示されます。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Install steps -->
+    <section>
+        <h2 class="section-title">導入方法</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Minecraft Forge を導入する</h3>
+                    <p>Forge <strong>1.20.1</strong> をインストールしてください。まだの場合は Forge 公式サイトからインストーラーをダウンロードして実行します。</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>jarファイルをダウンロード</h3>
+                    <p>下のダウンロードボタンから <code>gachacraft-1.0.0.jar</code> を入手してください。</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>modsフォルダに入れる</h3>
+                    <p>Minecraftのゲームディレクトリにある <code>mods</code> フォルダに jarファイルを入れます。</p>
+                    <p>場所がわからない場合：ランチャー > 起動構成 > フォルダアイコンで開けます。</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Forgeプロファイルで起動</h3>
+                    <p>Minecraftランチャーで <strong>Forge 1.20.1</strong> のプロファイルを選んで起動すればOK！</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rarity -->
+    <section>
+        <h2 class="section-title">レアリティ一覧</h2>
+        <div class="rarity-grid">
+            <div class="rarity-card n">
+                <div class="rarity-label">N</div>
+                <div class="rarity-info">
+                    <div class="rate">排出率: 60%</div>
+                    <div class="items">棒、土、丸石、砂利、腐った肉、骨 など</div>
+                    <div class="effect">演出: アクションバーに表示 + 村人の「No」音</div>
+                </div>
+            </div>
+            <div class="rarity-card r">
+                <div class="rarity-label">R</div>
+                <div class="rarity-info">
+                    <div class="rate">排出率: 25%</div>
+                    <div class="items">鉄インゴット、金インゴット、鉄の剣、弓、盾 など</div>
+                    <div class="effect">演出: アクションバーに表示 + 経験値オーブ音</div>
+                </div>
+            </div>
+            <div class="rarity-card sr">
+                <div class="rarity-label">SR</div>
+                <div class="rarity-info">
+                    <div class="rate">排出率: 12%</div>
+                    <div class="items">ダイヤモンド、ダイヤ装備、エンダーパール、エリトラ など</div>
+                    <div class="effect">演出: 画面中央に金色タイトル + レベルアップ音</div>
+                </div>
+            </div>
+            <div class="rarity-card ssr">
+                <div class="rarity-label">SSR</div>
+                <div class="rarity-info">
+                    <div class="rate">排出率: 3%</div>
+                    <div class="items">ネザライト装備、エンチャント金リンゴ、ネザースター、ドラゴンの卵 など</div>
+                    <div class="effect">演出: 画面中央に紫の大きなタイトル + チャレンジ完了音</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Multiplayer -->
+    <section>
+        <h2 class="section-title">マルチプレイで遊ぶ</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>サーバーとクライアント両方にModを入れる</h3>
+                    <p>サーバーの <code>mods</code> フォルダと、各プレイヤーの <code>mods</code> フォルダの両方に <code>gachacraft-1.0.0.jar</code> を入れてください。</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>いつも通り接続するだけ</h3>
+                    <p>特別な設定は不要です。全プレイヤーの作業台がガチャ化されます。</p>
+                </div>
+            </div>
+        </div>
+        <div class="note-box">
+            <h4>LAN公開で遊ぶ場合</h4>
+            <p>シングルプレイのワールドを「LANに公開」すれば、同じネットワーク内の友達と遊べます。この場合もお互いにModを入れておけばOKです。</p>
+        </div>
+    </section>
+
+    <!-- Download -->
+    <section>
+        <div class="download-section">
+            <h2>ダウンロード</h2>
+            <p>Forge 1.20.1 が必要です</p>
+            <a href="gachacraft-1.0.0.jar" class="download-btn" download>gachacraft-1.0.0.jar をダウンロード</a>
+            <p class="download-note">v1.0.0 / 約15KB / Minecraft Java Edition 1.20.1</p>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    Gacha Craft by Fu
+</footer>
+
+</body>
+</html>
