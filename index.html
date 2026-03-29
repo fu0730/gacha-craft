@@ -283,6 +283,24 @@
             font-size: 0.95rem;
         }
 
+        .trouble-item {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 12px;
+        }
+
+        .trouble-item h4 {
+            color: #e94560;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .trouble-item p {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -445,6 +463,36 @@
                     <a href="https://fu0730.github.io/minecraft-multiplayer-guide/" class="download-btn" target="_blank" rel="noopener" style="background: linear-gradient(135deg, #2ecc71, #3498db);">マルチプレイガイドを見る</a>
                 </p>
             </div>
+        </div>
+    </section>
+
+    <!-- Troubleshooting -->
+    <section>
+        <h2 class="section-title">ファイルが開けないとき</h2>
+
+        <div class="trouble-item">
+            <h4>Windows: 「WindowsによってPCが保護されました」と出る</h4>
+            <p>Windows SmartScreenの警告です。「詳細情報」をクリックしてから「実行」を押せば開けます。</p>
+        </div>
+
+        <div class="trouble-item">
+            <h4>Mac: 「開発元が未確認のため開けません」と出る</h4>
+            <p>ファイルを右クリック（またはControlを押しながらクリック）して「開く」を選んでください。確認ダイアログが出るのでもう一度「開く」を押せばOKです。</p>
+        </div>
+
+        <div class="trouble-item">
+            <h4>jarファイルをダブルクリックしても何も起きない</h4>
+            <p>Javaがインストールされていない可能性があります。<a href="https://adoptium.net/temurin/releases/?version=17" target="_blank" rel="noopener" style="color: #7eb8ff;">Java 17 をここからインストール</a>してください（Windows: .msi / Mac: .pkg を選択）。インストール後にもう一度ダブルクリックしてみてください。</p>
+        </div>
+
+        <div class="trouble-item">
+            <h4>jarファイルが圧縮ファイルとして開かれる</h4>
+            <p>jarファイルの関連付けがおかしくなっています。jarファイルを右クリック > 「プログラムから開く」 > 「Java(TM) Platform SE binary」を選択してください。一覧にない場合はJavaのインストールが必要です。</p>
+        </div>
+
+        <div class="trouble-item">
+            <h4>ブラウザが「危険なファイル」として警告する</h4>
+            <p>jarファイルは実行可能ファイルなのでブラウザが警告を出すことがあります。「保存」または「許可」を選んでダウンロードしてください。</p>
         </div>
     </section>
 
