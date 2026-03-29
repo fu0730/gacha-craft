@@ -152,6 +152,22 @@
             color: #7eb8ff;
         }
 
+        .forge-btn {
+            display: inline-block;
+            padding: 10px 24px;
+            background: #2d4a7a;
+            color: #7eb8ff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .forge-btn:hover {
+            background: #3a5f9a;
+        }
+
         /* Rarity table */
         .rarity-grid {
             display: grid;
@@ -310,37 +326,71 @@
         </div>
     </section>
 
+    <!-- Prerequisites -->
+    <section>
+        <h2 class="section-title">必要なもの</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-content">
+                    <h3>Minecraft Java Edition</h3>
+                    <p>PC版（Java Edition）が必要です。Switch/PS/スマホ版では使えません。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Install steps -->
     <section>
-        <h2 class="section-title">導入方法</h2>
+        <h2 class="section-title">導入方法（初めてModを入れる人向け）</h2>
         <div class="steps">
             <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                    <h3>Minecraft Forge を導入する</h3>
-                    <p>Forge <strong>1.20.1</strong> をインストールしてください。まだの場合は Forge 公式サイトからインストーラーをダウンロードして実行します。</p>
+                    <h3>Minecraft 1.20.1 を一度起動する</h3>
+                    <p>Minecraftランチャーを開いて、「起動構成」から<strong>バージョン 1.20.1</strong> を選んで一度だけ起動してください。起動したらすぐ閉じてOKです。（これで必要なファイルが作られます）</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <h3>jarファイルをダウンロード</h3>
-                    <p>下のダウンロードボタンから <code>gachacraft-1.0.0.jar</code> を入手してください。</p>
+                    <h3>Forge 1.20.1 をインストール</h3>
+                    <p>下のボタンからForgeインストーラーをダウンロードして実行してください。</p>
+                    <p style="margin-top: 12px;">
+                        <a href="https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.1-47.3.0/forge-1.20.1-47.3.0-installer.jar" class="forge-btn" download>Forge 1.20.1 インストーラーをダウンロード</a>
+                    </p>
+                    <p style="margin-top: 12px;">ダウンロードした <code>forge-...-installer.jar</code> をダブルクリックで開き、「Install client」を選んで「OK」を押すだけ！</p>
+                    <div class="note-box" style="margin-top: 12px;">
+                        <h4>jarファイルが開けない場合</h4>
+                        <p>Javaがインストールされていない可能性があります。<a href="https://adoptium.net/temurin/releases/?version=17" target="_blank" rel="noopener" style="color: #7eb8ff;">Java 17 をここからインストール</a>してから再度お試しください。（Windows: .msi / Mac: .pkg を選んでください）</p>
+                    </div>
                 </div>
             </div>
             <div class="step">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                    <h3>modsフォルダに入れる</h3>
-                    <p>Minecraftのゲームディレクトリにある <code>mods</code> フォルダに jarファイルを入れます。</p>
-                    <p>場所がわからない場合：ランチャー > 起動構成 > フォルダアイコンで開けます。</p>
+                    <h3>Gacha Craft をダウンロード</h3>
+                    <p>このページの下にあるダウンロードボタンから <code>gachacraft-1.0.0.jar</code> を入手してください。</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-number">4</div>
                 <div class="step-content">
-                    <h3>Forgeプロファイルで起動</h3>
-                    <p>Minecraftランチャーで <strong>Forge 1.20.1</strong> のプロファイルを選んで起動すればOK！</p>
+                    <h3>modsフォルダに入れる</h3>
+                    <p>ダウンロードした <code>gachacraft-1.0.0.jar</code> を modsフォルダに入れます。</p>
+                    <div class="note-box" style="margin-top: 12px;">
+                        <h4>modsフォルダの開き方</h4>
+                        <p><strong>Windows:</strong> キーボードで <code>Win + R</code> を押して <code>%appdata%\.minecraft\mods</code> と入力してEnter</p>
+                        <p style="margin-top: 8px;"><strong>Mac:</strong> Finderで <code>Shift + Command + G</code> を押して <code>~/Library/Application Support/minecraft/mods</code> と入力</p>
+                        <p style="margin-top: 8px;">modsフォルダがない場合は自分で作ってください。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>Forgeで起動！</h3>
+                    <p>Minecraftランチャーを開いて、左下のプロファイルを <strong>forge</strong> に切り替えて「プレイ」を押せば完了！</p>
+                    <p>作業台で何かクラフトしてみてください。ガチャが始まります！</p>
                 </div>
             </div>
         </div>
